@@ -63,9 +63,11 @@
 #       after_success: skip
 
 
+dist: focal  # Specify a newer base image
+
 language: node_js
 node_js:
-  - "17"  # Specifying Node.js version as per VSCode requirement
+  - "18"  # Specifying Node.js version as per VSCode requirement
 
 branches:
   only:
