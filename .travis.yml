@@ -65,14 +65,13 @@
 
 language: node_js
 node_js:
-  - "18"  # Specifying Node.js version as per VSCode requirement
+  - "17"  # Specifying Node.js version as per VSCode requirement
 
 branches:
   only:
     - main  # Assuming main is the branch you want to build
 
 before_install:
-  - npm install 17
   - npm install -g yarn  # VSCode uses Yarn for package management
 
 install:
