@@ -25,7 +25,7 @@
 	z-index: 5;
 	pointer-events: none;
 	background-color: var(--status-border-top-color);
-	width: 100%;
+	width: 90%;
 	height: 1px;
 }
 
@@ -33,6 +33,30 @@
 .monaco-workbench .part.statusbar > .right-items {
 	display: flex;
 }
+
+.statusbar-item {
+	padding: 5px 10px;
+	/* Adjust padding as needed */
+	margin-right: 5px;
+	/* Adjust margin to space items */
+}
+
+
+.statusbar-container {
+	display: flex;
+	align-items: center;
+	/* Aligns items vertically in the center */
+	justify-content: space-between;
+	/* Adjusts spacing between items */
+}
+
+.statusbar-icon {
+	height: 16px;
+	/* Adjust icon size */
+	margin-top: 2px;
+	/* Adjust vertical position */
+}
+
 
 .monaco-workbench .part.statusbar > .right-items {
 	flex-wrap: wrap; /* overflow elements by wrapping */
