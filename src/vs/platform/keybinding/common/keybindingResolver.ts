@@ -300,6 +300,7 @@ export class KeybindingResolver {
 		return items[items.length - 1];
 	}
 
+
 	/**
 	 * Looks up a keybinding trigged as a result of pressing a sequence of chords - `[...currentChords, keypress]`
 	 *
@@ -307,6 +308,20 @@ export class KeybindingResolver {
 	 * 	`currentChords = [ 'cmd+k' , 'cmd+p' ]` and `keypress = `cmd+i` - last pressed chord
 	 */
 	public resolve(context: IContext, currentChords: string[], keypress: string): ResolutionResult {
+		const keyboardEvent = new KeyboardEvent("keydown", {
+			key: keypress,
+			ctrlKey: currentChords.includes('ctrl'),
+			metaKey: currentChords.includes('cmd')
+		});
+
+		// Intercept Cmd/Ctrl+W
+		if (keyboardEvent.ctrlKey || keyboardEvent.metaKey) {
+			this._handleCmdCtrlW(keyboardEvent);
+			if (keyboardEvent.defaultPrevented) {
+				return NoMatchingKb;
+			}
+		}
+
 
 		const pressedChords = [...currentChords, keypress];
 
@@ -386,6 +401,15 @@ export class KeybindingResolver {
 		}
 		return rules.evaluate(context);
 	}
+
+	private _handleCmdCtrlW(event: KeyboardEvent): void {
+		if ((event.ctrlKey || event.metaKey) && event.key === 'w') {
+			event.preventDefault();
+			// Additional logic can be added here if needed
+			console.log('Cmd/Ctrl+W shortcut intercepted.');
+		}
+	}
+
 }
 
 function printWhenExplanation(when: ContextKeyExpression | undefined): string {
