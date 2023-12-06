@@ -72,6 +72,7 @@ branches:
     - main  # Assuming main is the branch you want to build
 
 before_install:
+  - npm install 17
   - npm install -g yarn  # VSCode uses Yarn for package management
 
 install:
